@@ -1,6 +1,6 @@
 const BASE_URL = "https://pokeapi.co/api/v2";
 
-export const fetchPokemonList = async (offset = 0, limit = 20) => {
+export const fetchPokemonList = async (offset = 0, limit = 151) => {
   const response = await fetch(
     `${BASE_URL}/pokemon?offset=${offset}&limit=${limit}`
   );
