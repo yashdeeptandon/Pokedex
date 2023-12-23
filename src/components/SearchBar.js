@@ -43,7 +43,7 @@ const SearchBar = () => {
         type="text"
         value={searchTerm}
         onChange={handleInputChange}
-        placeholder="Search Pokemon by name or ID"
+        placeholder="Search Pokemon by Name"
         className="search-input"
       />
       <div className="pokemon-list">
