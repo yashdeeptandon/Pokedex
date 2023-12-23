@@ -1,0 +1,80 @@
+.pokemon-detail-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background: #F6F7C4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.pokemon-detail-modal.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemon-detail-modal {
+    width: 80%;
+    max-width: 600px;
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+.modal-header h3 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.stats-container {
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.stat-bar {
+    opacity: 1;
+    width: 20rem;
+    height: 20px;
+    background-color: #dd8585;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100vh;
+}
+
+.modal-footer button {
+    background-color: #711DB0;
+    border-color: #711DB0;
+    width: 80px;
+    height: 30px;
+    border-radius: 20px;
+    color: white;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.modal-footer button:hover {
+    background-color: #596FB7;
+    border-color: #596FB7;
+}

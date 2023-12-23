@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import SearchBar from "./components/SearchBar";
+import PokemonCard from "./components/PokemonCard";
+import PokemonDetailModal from "./components/PokemonDetailModal";
+import { fetchPokemonList, fetchPokemonDetail } from "./utils/api";
+import { Container, Row } from "react-bootstrap";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [pokemonList, setPokemonList] = useState([]);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+
+  useEffect(() => {
+    loadPokemonList();
+  }, []);
+
+  const loadPokemonList = async () => {
+    const data = await fetchPokemonList();
+    setPokemonList(data);
+  };
+
+  const handlePokemonClick = async (pokemonId) => {
+    const data = await fetchPokemonDetail(pokemonId);
+    setSelectedPokemon(data);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedPokemon(null);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Row>
+        <SearchBar />
+      </Row>
+      <div className="pokemon-card-container">
+        {pokemonList.map((pokemon, index) => (
+          <PokemonCard
+            key={index}
+            pokemon={pokemon}
+            onPokemonClick={handlePokemonClick}
+          />
+        ))}
+      </div>
+      {selectedPokemon && (
+        <PokemonDetailModal
+          pokemon={selectedPokemon}
+          onCloseModal={handleCloseModal}
+        />
+      )}
+    </Container>
   );
-}
+};
 
 export default App;
